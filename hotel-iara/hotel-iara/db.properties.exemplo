@@ -1,0 +1,5 @@
+# Copie para db.properties ao lado do pom.xml e preencha seus dados locais.
+# No IntelliJ, configure esse diretorio como Working directory da execucao.
+db.url=jdbc:mysql://localhost:3306/hotel_iara_demo?connectTimeout=5000&socketTimeout=10000
+db.usuario=SEU_USUARIO
+db.senha=SUA_SENHA

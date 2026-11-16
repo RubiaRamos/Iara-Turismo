@@ -1,0 +1,7 @@
+# Credenciais locais: somente o arquivo de exemplo pode ser versionado.
+db.properties
+
+# Arquivos gerados e configuracoes locais do editor.
+target/
+.idea/
+*.iml
