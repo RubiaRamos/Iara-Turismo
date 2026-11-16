@@ -1,6 +1,8 @@
 package br.com.hoteliara.model;
 
 import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import br.com.hoteliara.exception.PagamentoRecusadoException;
 
 // Abstrata: os dados sao comuns, mas cada forma tem seu processamento.
@@ -28,7 +30,10 @@ public abstract class Pagamento implements Cancelavel {
             throw new IllegalStateException("Somente pagamentos pendentes podem ser processados.");
         if (reserva.getStatus() == StatusReserva.CANCELADA)
             throw new PagamentoRecusadoException("Nao e possivel pagar uma reserva cancelada.");
-        if (valor > reserva.getSaldoDevedor())
+        // O saldo double pode conter residuos binarios; dinheiro e comparado em centavos.
+        BigDecimal saldo = BigDecimal.valueOf(reserva.getSaldoDevedor())
+                .setScale(2, RoundingMode.HALF_UP);
+        if (BigDecimal.valueOf(valor).compareTo(saldo) > 0)
             throw new PagamentoRecusadoException("O valor ultrapassa o saldo devedor da reserva.");
     }
 

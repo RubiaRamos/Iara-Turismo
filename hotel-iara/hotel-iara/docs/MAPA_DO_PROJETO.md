@@ -8,7 +8,7 @@ As classes das colegas foram preservadas. O trabalho de Du adiciona pagamento, a
 persistencia e consultas de CEP/localizacao. Criacao e integracao de telas foram excluidas.
 A interface existente continua sendo uma demonstracao em memoria.
 A compilacao do aplicativo completo foi verificada com javac --release 17 e JavaFX 21.0.5.
-Foram executadas 84 verificacoes: 20 de dominio, 35 JDBC e 29 de API simulada.
+Foram executadas 96 verificacoes: 24 de dominio, 43 JDBC e 29 de API simulada.
 MySQL real, APIs reais e abertura das telas nao foram validados nesta etapa.
 
 ## Como os pacotes se dividem

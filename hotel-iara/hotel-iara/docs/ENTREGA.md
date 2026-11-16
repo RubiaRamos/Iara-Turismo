@@ -30,7 +30,7 @@ Os testes JDBC e de API usam banco H2 temporario e HTTP simulado, sem tocar no M
 Nenhuma credencial real deve ser colocada nos fontes ou no arquivo de exemplo.
 
 Neste ambiente: compilacao completa com javac --release 17 e dependencias JavaFX/Gson obtidas do Maven Central;
-20 + 35 + 29 verificacoes executadas separadamente.
+24 + 43 + 29 verificacoes executadas separadamente (96 no total).
 O script foi verificado sintaticamente, mas o comando Maven nao foi executado aqui por bloqueio da rede do terminal.
 
 ## Pendencias externas

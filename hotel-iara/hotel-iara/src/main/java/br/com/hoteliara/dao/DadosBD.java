@@ -3,6 +3,8 @@ package br.com.hoteliara.dao;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Map;
 import br.com.hoteliara.model.*;
 import br.com.hoteliara.exception.*;
@@ -62,6 +64,7 @@ final class DadosBD {
     private static DadosBD carregar(Connection c)
             throws SQLException, QuartoIndisponivelException, PagamentoRecusadoException {
         DadosBD d = new DadosBD();
+        Set<Integer> quartosEmManutencao = new HashSet<>();
         consultar(c, "SELECT * FROM hotel ORDER BY id_hotel", rs -> {
             Endereco e = new Endereco(rs.getString("logradouro"), rs.getString("numero"),
                     rs.getString("complemento"), rs.getString("cep"),
@@ -84,7 +87,8 @@ final class DadosBD {
             Categoria categoria = exigir(d.categorias, rs.getInt("id_categoria"), "categoria");
             Quarto quarto = Quarto.criar(rs.getInt("id_quarto"), rs.getInt("numero"),
                     rs.getInt("andar"), categoria, hotel);
-            if ("MANUTENCAO".equals(rs.getString("status"))) quarto.colocarEmManutencao();
+            // Restaurar reservas existentes nao deve ser bloqueado pela manutencao atual.
+            if ("MANUTENCAO".equals(rs.getString("status"))) quartosEmManutencao.add(quarto.getId());
             hotel.adicionarQuarto(quarto);
             d.quartos.put(quarto.getId(), quarto);
         });
@@ -116,6 +120,8 @@ final class DadosBD {
             cliente.adicionarReservaAoHistorico(reserva);
             d.reservas.put(reserva.getId(), reserva);
         });
+        // Mantem todas as reservas e so depois reaplica o estado fisico do quarto.
+        for (int id : quartosEmManutencao) d.quartos.get(id).colocarEmManutencao();
         consultar(c, "SELECT * FROM pagamento ORDER BY id_pagamento", rs -> {
             Reserva reserva = exigir(d.reservas, rs.getInt("id_reserva"), "reserva");
             Object parcelas = rs.getObject("parcelas");

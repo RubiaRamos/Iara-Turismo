@@ -53,6 +53,8 @@ Map<Integer, Entidade> conserva uma unica instancia por ID DENTRO de um carregam
 Isso importa porque Hotel.adicionarQuarto e Cliente.adicionarReservaAoHistorico verificam referencias de objetos.
 Quarto.criar escolhe a subclasse correta; Reserva.restaurar aceita datas historicas e preserva valor_total.
 Reservas ativas sao registradas no quarto; cada reserva tambem entra no historico do mesmo cliente.
+O estado MANUTENCAO e reaplicado somente depois de restaurar as reservas existentes.
+Assim, uma manutencao atual nao impede reconstruir o historico, mas continua bloqueando novas reservas.
 Pagamentos restaurados sao associados uma vez a reserva. Avaliacoes sao associadas uma vez ao hotel.
 
 A leitura completa foi escolhida para evitar chamadas recursivas entre DAOs e pagamentos incompletos no saldo.
@@ -85,8 +87,8 @@ Um registro invalido pode impedir carregar o conjunto. A mensagem preserva a cau
 ## Validacao realizada
 
 - Compilacao de model, exception, dao, service e SenhaUtil: javac --release 17, sem erros.
-- 20 verificacoes do dominio, de pagamentos e avaliacoes.
-- 35 verificacoes JDBC em H2 2.3.232 no modo MySQL, com DDL derivado das oito tabelas da v3.
+- 24 verificacoes do dominio, de pagamentos e avaliacoes, incluindo saldo com centavos.
+- 43 verificacoes JDBC em H2 2.3.232 no modo MySQL, incluindo manutencao com reserva ativa.
 - Verificados: vazio/ID ausente; IDs gerados; leitura polimorfica; hash de senha; rollback de funcionario;
   CRUD das entidades; identidade dentro do grafo; ocupacao; saldo; baixa e estorno persistidos;
   parcelas; nota media; avaliacao duplicada; protecao de registros dependentes; reserva historica;

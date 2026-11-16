@@ -66,6 +66,23 @@ public class VerificarDominio {
         conferir(avaliacao.getNota() == 5, "Edicao invalida preserva nota");
         avaliacao.editar(4, "Revisao");
         conferir(hotel.calcularNotaMedia() == 4, "Media reflete edicao");
+        Categoria centavos = new Categoria(2, "Centavos", TipoQuarto.PADRAO, 1, 100.10);
+        Quarto quartoCentavos = Quarto.criar(2, 102, 1, centavos, hotel);
+        Reserva fracionada = cliente.realizarReserva(quartoCentavos, entrada, entrada.plusDays(1), 1);
+        service.processar(new PagamentoPix(fracionada, 100));
+        rejeitar(PagamentoRecusadoException.class,
+                () -> service.processar(new PagamentoPix(fracionada, 0.11)));
+        service.processar(new PagamentoPix(fracionada, 0.10));
+        conferir(fracionada.estaQuitada(), "100 mais 0.10 quita 100.10 sem recusa por residuo double");
+        rejeitar(PagamentoRecusadoException.class,
+                () -> service.processar(new PagamentoPix(fracionada, 0.01)));
+        Quarto quartoBoleto = Quarto.criar(3, 103, 1, centavos, hotel);
+        Reserva fracionadaBoleto = cliente.realizarReserva(quartoBoleto, entrada, entrada.plusDays(1), 1);
+        service.processar(new PagamentoCartao(fracionadaBoleto, 100, 1));
+        PagamentoBoleto boletoCentavos = new PagamentoBoleto(fracionadaBoleto, 0.10);
+        service.processar(boletoCentavos);
+        boletoCentavos.registrarBaixa();
+        conferir(fracionadaBoleto.estaQuitada(), "Baixa de boleto tambem compara saldo em centavos");
         System.out.println(checks + " verificacoes passaram.");
     }
 }

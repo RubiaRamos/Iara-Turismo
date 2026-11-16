@@ -145,6 +145,24 @@ public class VerificarPersistencia {
                     rs.next(); conferir(rs.getString(1).equals("DISPONIVEL"), "Nao persiste OCUPADO");
                 }
             }
+            quarto.colocarEmManutencao();
+            quartos.atualizar(quarto);
+            conferir(hoteis.listar().size() == 1, "Manutencao com reserva ativa nao bloqueia leitura global");
+            Quarto emManutencao = quartos.buscarPorId(quarto.getId());
+            conferir(emManutencao.getStatus() == StatusQuarto.MANUTENCAO, "Manutencao preservada na leitura");
+            conferir(emManutencao.getReservas().size() == 1, "Reserva ativa preservada durante manutencao");
+            conferir(!emManutencao.estaDisponivel(entrada.plusDays(20), entrada.plusDays(21)),
+                    "Manutencao impede novas reservas mesmo fora do periodo ja reservado");
+            rejeitar(br.com.hoteliara.exception.QuartoIndisponivelException.class,
+                    () -> cliente.realizarReserva(emManutencao, entrada.plusDays(20), entrada.plusDays(21), 1));
+            emManutencao.retirarDaManutencao();
+            quartos.atualizar(emManutencao);
+            Quarto liberado = quartos.buscarPorId(quarto.getId());
+            conferir(liberado.getStatus() == StatusQuarto.OCUPADO, "Retirar manutencao restaura ocupacao calculada");
+            conferir(liberado.estaDisponivel(entrada.plusDays(20), entrada.plusDays(21)),
+                    "Apos manutencao pode reservar outro periodo");
+            conferir(!liberado.estaDisponivel(LocalDate.now(), LocalDate.now().plusDays(1)),
+                    "Apos manutencao a reserva anterior ainda bloqueia o proprio periodo");
             atual.cancelar(); reservas.atualizar(atual); reservas.remover(atual.getId());
             avaliacoes.remover(avaliacao.getId());
             pagamentos.remover(pix.getId()); pagamentos.remover(boleto.getId()); pagamentos.remover(cartao.getId());

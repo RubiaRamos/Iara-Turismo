@@ -1,5 +1,18 @@
 # Decisoes de implementacao - Du
 
+## Revisao: centavos e manutencao
+
+- Pagamento compara seu valor com o saldo convertido para BigDecimal e arredondado a duas casas com HALF_UP.
+- Isso remove residuos binarios do double sem alterar a assinatura getValor nem a classe Reserva da colega.
+- O teste de R$ 100,10 com pagamentos de R$ 100 e R$ 0,10 agora passa, incluindo baixa de boleto.
+- Excesso real de um centavo continua sendo recusado.
+- DadosBD guarda temporariamente os IDs de quartos em manutencao e restaura primeiro suas reservas.
+- Depois reaplica colocarEmManutencao; novas reservas continuam proibidas e as anteriores permanecem registradas.
+- Testes verificam leitura global, manutencao, preservacao da reserva e comportamento ao retirar manutencao.
+- Nao foram alterados Reserva, Quarto ou quaisquer fontes das colegas.
+- Compilacao completa aprovada e 96 verificacoes passaram: 24 de dominio, 43 JDBC e 29 de API simulada.
+- Os registros das etapas abaixo sao historicos e mantem as contagens de cada momento.
+
 ## Etapa 1: excecao de pagamento e contrato DAO
 
 ### PagamentoRecusadoException
