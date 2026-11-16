@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Tela de login: fundo branco com um cartão escuro dividido em duas metades. -->
+<StackPane prefHeight="800.0" prefWidth="1280.0" styleClass="fundo-claro"
+           xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="br.com.hoteliara.controller.LoginController">
+    <padding>
+        <Insets bottom="70.0" left="114.0" right="114.0" top="70.0" />
+    </padding>
+
+    <HBox styleClass="card-escuro">
+        <!-- Metade esquerda: logo e chamada -->
+        <VBox alignment="CENTER" prefWidth="500.0" spacing="34.0" HBox.hgrow="ALWAYS">
+            <ImageView fitWidth="345.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../img/logo.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="rotulo-grande" text="Faça seu login" />
+            <padding>
+                <Insets bottom="40.0" />
+            </padding>
+        </VBox>
+
+        <!-- Linha divisória -->
+        <Region maxWidth="3.0" minWidth="3.0" prefWidth="3.0" styleClass="divisor">
+            <HBox.margin>
+                <Insets bottom="10.0" />
+            </HBox.margin>
+        </Region>
+
+        <!-- Metade direita: formulário -->
+        <VBox alignment="CENTER" prefWidth="500.0" HBox.hgrow="ALWAYS">
+            <VBox maxWidth="380.0" prefWidth="380.0" spacing="12.0">
+                <Label styleClass="rotulo" text="Email:" />
+                <TextField fx:id="campoEmail" styleClass="campo" />
+
+                <Label styleClass="rotulo" text="Senha:">
+                    <VBox.margin>
+                        <Insets top="6.0" />
+                    </VBox.margin>
+                </Label>
+                <!-- Enter na senha também faz o login -->
+                <PasswordField fx:id="campoSenha" onAction="#onEntrar" styleClass="campo" />
+
+                <VBox alignment="CENTER" spacing="14.0">
+                    <VBox.margin>
+                        <Insets top="40.0" />
+                    </VBox.margin>
+                    <Button onAction="#onEntrar" styleClass="botao-creme" text="Entrar" />
+                    <Hyperlink onAction="#onCadastrar" styleClass="link-claro" text="Cadastrar" />
+                </VBox>
+            </VBox>
+        </VBox>
+    </HBox>
+</StackPane>

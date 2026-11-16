@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Detalhe do quarto: foto + descrição à esquerda, calendário + botão à direita. -->
+<VBox prefHeight="800.0" prefWidth="1280.0" styleClass="fundo-claro"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.com.hoteliara.controller.QuartoController">
+
+    <!-- Cabeçalho (a logo pequena volta para a lista de quartos) -->
+    <StackPane minHeight="185.0" prefHeight="185.0">
+        <ImageView fitHeight="168.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+            <image>
+                <Image url="@../img/titulo-hotel.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="logoPequeno" fitWidth="98.0" onMouseClicked="#onVerQuartos" pickOnBounds="true"
+                   preserveRatio="true" styleClass="imagem-clicavel" StackPane.alignment="TOP_LEFT">
+            <image>
+                <Image url="@../img/logo.png" />
+            </image>
+            <StackPane.margin>
+                <Insets left="31.0" top="33.0" />
+            </StackPane.margin>
+        </ImageView>
+    </StackPane>
+
+    <!-- Cartão escuro principal -->
+    <HBox prefHeight="551.0" styleClass="card-escuro-grande">
+        <VBox.margin>
+            <Insets left="29.0" right="29.0" />
+        </VBox.margin>
+
+        <!-- Lado esquerdo: foto e textos -->
+        <HBox prefWidth="810.0" spacing="28.0" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets left="28.0" right="30.0" top="50.0" />
+            </padding>
+
+            <ImageView fx:id="fotoQuarto" fitWidth="284.0" preserveRatio="true" />
+
+            <VBox spacing="12.0" HBox.hgrow="ALWAYS">
+                <!-- Título: imagem cursiva (quarto casal) ou texto, conforme o quarto -->
+                <VBox alignment="CENTER">
+                    <ImageView fx:id="tituloImagem" fitHeight="78.0" preserveRatio="true" />
+                    <Label fx:id="lblNome" styleClass="titulo-quarto" />
+                </VBox>
+                <Label fx:id="lblDescricao" maxWidth="Infinity" styleClass="texto-descricao"
+                       textAlignment="JUSTIFY" wrapText="true" />
+                <Label fx:id="lblDestaque" maxWidth="Infinity" styleClass="texto-destaque" wrapText="true">
+                    <VBox.margin>
+                        <Insets top="8.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="lblComodidades" maxWidth="Infinity" styleClass="texto-descricao"
+                       textAlignment="JUSTIFY" wrapText="true" />
+            </VBox>
+        </HBox>
+
+        <!-- Linha divisória -->
+        <Region maxWidth="3.0" minWidth="3.0" prefWidth="3.0" styleClass="divisor" />
+
+        <!-- Lado direito: calendário e botão -->
+        <VBox alignment="CENTER" prefWidth="410.0" spacing="22.0" HBox.hgrow="ALWAYS">
+            <!-- O calendário é colocado aqui pelo controller (DatePickerSkin) -->
+            <StackPane fx:id="calendarioBox" maxWidth="310.0" styleClass="calendario" />
+            <Label fx:id="lblData" styleClass="rotulo" text="Selecione a data" />
+            <Button onAction="#onReservar" styleClass="botao-creme" text="Reservar" />
+        </VBox>
+    </HBox>
+</VBox>
