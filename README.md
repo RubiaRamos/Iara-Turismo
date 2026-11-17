@@ -17,7 +17,6 @@ O sistema organiza tudo isso aplicando os conceitos de POO, com dados guardados 
 - Pagamento por **Pix** (aprova na hora), **cartão** (1 a 12 parcelas) ou **boleto** (fica pendente).
   Dá para pagar em partes; a reserva é confirmada quando fica quitada.
 - "Minhas reservas": histórico, pagar o restante, cancelar (estorna os pagamentos aprovados) e avaliar (nota 1 a 5).
-- Área do funcionário: reservas ativas de todos os hotéis, com confirmar, concluir (check-out), cancelar e dar baixa no boleto.
 - Mapa dos hotéis (OpenStreetMap + Leaflet). Hotel sem coordenadas é localizado pela API Nominatim.
 - Mensagens claras para cada erro (exceções próprias do sistema).
 
