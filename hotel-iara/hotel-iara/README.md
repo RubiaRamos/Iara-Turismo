@@ -20,6 +20,7 @@ Login de teste: `ana.silva@email.com` / `123456`.
 | Detalhe do quarto + reserva | `fxml/quarto.fxml` | `QuartoController` |
 | Pagamento | `fxml/pagamento.fxml` | `PagamentoController` |
 | Minhas reservas | `fxml/reservas.fxml` | `ReservasController` |
+| Área do funcionário | `fxml/admin.fxml` | `AdminController` |
 | Mapa dos hotéis | `fxml/mapa.fxml` | `MapaController` |
 
 Para abrir no Scene Builder: arquivos em `src/main/resources/br/com/hoteliara/fxml/`.
