@@ -1,5 +1,7 @@
 # Decisoes de implementacao - Du
 
+> **Atualizacao (17/11):** depois destas etapas, as telas foram integradas ao sistema (PR #2 `integracao-telas` e PR #3 `area-funcionario`). Login, cadastro, pesquisa, reserva, pagamento, minhas reservas, area do funcionario e mapa usam os services, o model e os DAOs. O MapaService e usado pela tela de mapa. Visao geral atualizada: README da raiz.
+
 ## Revisao: centavos e manutencao
 
 - Pagamento compara seu valor com o saldo convertido para BigDecimal e arredondado a duas casas com HALF_UP.

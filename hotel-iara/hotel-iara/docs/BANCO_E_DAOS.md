@@ -2,7 +2,7 @@
 
 ## Escopo
 
-Esta etapa nao cria nem altera telas. As classes de negocio das colegas foram preservadas.
+Esta etapa nao cria nem altera telas (a integracao com as telas veio depois, no PR #2). As classes de negocio das colegas foram preservadas.
 O banco nao foi configurado nem executado no MySQL do usuario.
 
 ## Preparacao no MySQL

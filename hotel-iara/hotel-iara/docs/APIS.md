@@ -37,7 +37,7 @@ A consulta deve ser acionada para um hotel especifico; nao usar autocomplete ou 
 Nao enviar dados pessoais ou sigilosos.
 Dados OpenStreetMap sob ODbL; atribuicao obrigatoria em qualquer futura exibicao:
 "© OpenStreetMap contributors" com link https://www.openstreetmap.org/copyright.
-Nenhum mapa visual, tiles, Leaflet ou WebView foi criado, conforme exclusao de telas pelo usuario.
+Nesta entrega nenhum mapa visual foi criado. Depois (PR #2), a tela de mapa (MapaController) passou a usar Leaflet num WebView, com a atribuicao ao OpenStreetMap, e chama o MapaService para hoteis sem coordenadas.
 
 ## Fontes
 
