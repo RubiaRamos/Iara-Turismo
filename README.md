@@ -79,6 +79,15 @@ Outras decisões:
 - A coluna `tipo` da categoria decide qual subclasse de Quarto criar (`Quarto.criar(...)`, uma fábrica).
 - Telas não acessam o banco: chamam os services, que usam o modelo e os DAOs (camadas separadas).
 
+## Recursos extras
+
+| Recurso | Como foi feito |
+|---|---|
+| **Tratamento de exceções** | Exceções próprias no pacote `exception`, lançadas pelo modelo e pelos services e tratadas nas telas (`try/catch` + mensagem para o usuário). |
+| **Interface gráfica** | 8 telas JavaFX (FXML + CSS): login, cadastro, pesquisa, detalhe do quarto, pagamento, minhas reservas, área do funcionário e mapa. |
+| **Integração com banco de dados** | MySQL via JDBC: um DAO por entidade, implementando a interface `Dao<T>`; cadastros, reservas, pagamentos e avaliações ficam gravados. |
+| **Integração com API** | Nominatim (OpenStreetMap) descobre as coordenadas de hotéis sem localização e grava no banco; o mapa usa OpenStreetMap + Leaflet. ViaCEP disponível em `CepService`. |
+
 ## Uso de IA
 
 Primeiro modelamos o sistema em grupo, no documento do projeto (classes, heranças, interfaces e banco).

@@ -2,26 +2,26 @@
 
 ## Estado da entrega
 
+> **Atualizacao (17/11):** depois desta entrega, as telas foram integradas ao sistema (PR #2 `integracao-telas` e PR #3 `area-funcionario`). Login, cadastro, pesquisa, reserva, pagamento, minhas reservas, area do funcionario e mapa usam os services, o model e os DAOs. O MapaService e usado pela tela de mapa. Visao geral atualizada: README da raiz.
+
 Base: branch feature/classes-pessoa, commit b27e40e9e3b8c9a3397b6d65983369bb1858f425.
 Essa base ja inclui as classes da branch model-hospedagem.
 As classes das colegas foram preservadas. O trabalho de Du adiciona pagamento, avaliacao,
-persistencia e consultas de CEP/localizacao. Criacao e integracao de telas foram excluidas.
-A interface existente continua sendo uma demonstracao em memoria.
+persistencia e consultas de CEP/localizacao. A integracao das telas veio depois (PRs #2 e #3).
 A compilacao do aplicativo completo foi verificada com javac --release 17 e JavaFX 21.0.5.
 Foram executadas 96 verificacoes: 24 de dominio, 43 JDBC e 29 de API simulada.
-MySQL real, APIs reais e abertura das telas nao foram validados nesta etapa.
+Depois da integracao, o fluxo completo das telas foi testado com banco MySQL/MariaDB real.
 
 ## Como os pacotes se dividem
 
 | Pacote | Responsabilidade |
 | --- | --- |
-| br.com.hoteliara | Inicializacao Main e navegacao entre telas |
-| controller | Reacao aos eventos das quatro telas existentes |
-| modelo | Dados demonstrativos das telas; nao e o dominio novo |
+| br.com.hoteliara | Main/Launcher (inicio), Navegador (troca de telas) e Sessao (usuario logado e escolhas entre telas) |
+| controller | Uma classe por tela: login, cadastro, pesquisa, quarto, pagamento, reservas, admin e mapa |
 | model | Entidades e regras reais: pessoas, hoteis, quartos, reservas, pagamentos |
 | exception | Excecoes do dominio, de banco e de consulta externa |
 | dao | Persistencia JDBC e reconstrucao das associacoes |
-| service | Coordenacao do processamento de pagamento |
+| service | AuthService (login/cadastro), HotelService (pesquisa), ReservaService (reservar, pagar, cancelar, avaliar, acoes do funcionario) e PagamentoService |
 | util | Senha, imagens, dialogos, CEP e localizacao |
 
 ## Entidades: o que cada classe representa
@@ -161,16 +161,15 @@ Avaliacao.restaurar preserva ID/data, mas ainda exige reserva concluida.
 DadosBD associa cada objeto na ordem em que suas dependencias ja existem.
 Os DAOs nao substituem a validacao do dominio e nao tornam a demonstracao concorrente.
 
-## Infraestrutura e telas existentes
+## Infraestrutura e telas
 
 ConexaoBD le propriedades e abre Connection; Dao nao abre conexao sozinho.
 Jdbc reduz repeticao de PreparedStatement; DadosBD monta o grafo por ID.
 Main inicia JavaFX, Navegador troca FXML, controllers reagem a eventos.
-RepositorioUsuarios guarda email/senha em memoria para demonstracao.
-CatalogoQuartos possui quatro quartos fixos; modelo.Quarto e um record de apresentacao.
-Sessao guarda email e quarto selecionado entre telas.
-Dialogos apresenta avisos; Imagens carrega imagens e arredonda sua exibicao.
-Nada disso foi ligado automaticamente ao model novo; telas preservadas conforme instrucao.
+Sessao guarda a pessoa logada, a pesquisa, o quarto e a reserva escolhidos entre telas.
+Cada tela chama um service; o service usa o model (regras) e os DAOs (banco). A tela nunca acessa o banco direto.
+Dialogos apresenta avisos e erros; Imagens carrega imagens e arredonda sua exibicao.
+O antigo pacote modelo (dados de demonstracao em memoria) foi removido na integracao (PR #2).
 
 ## Perguntas para estudar depois
 

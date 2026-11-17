@@ -1,5 +1,7 @@
 # Entrega de Du
 
+> **Atualizacao (17/11):** depois desta entrega, as telas foram integradas ao sistema (PR #2 `integracao-telas` e PR #3 `area-funcionario`). Login, cadastro, pesquisa, reserva, pagamento, minhas reservas, area do funcionario e mapa usam os services, o model e os DAOs. O MapaService e usado pela tela de mapa. Visao geral atualizada: README da raiz.
+
 ## Incluido
 
 - Pagamento abstrato, Pix, cartao, boleto e PagamentoService.
@@ -37,8 +39,8 @@ O script foi verificado sintaticamente, mas o comando Maven nao foi executado aq
 
 - Validacao no MySQL real com db.properties local.
 - Consulta real de Java as APIs, bloqueada neste ambiente.
-- Criacao/integracao de telas fora do escopo autorizado atual.
-- Revisao pela equipe e merge do pull request.
+- Criacao/integracao de telas: feita depois, nos PRs #2 e #3.
+- Revisao pela equipe e merge do pull request: feito (PR #1).
 
-O aplicativo ainda abre as telas demonstrativas existentes. Os novos DAOs e servicos nao sao chamados por elas.
+Na epoca desta entrega, as telas ainda eram demonstrativas; hoje elas chamam os services, que usam os DAOs.
 

@@ -73,7 +73,7 @@ public class MapaController {
                 var mapa = L.map('mapa').setView([-15.8, -47.9], 4);
                 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
                   maxZoom: 19,
-                  attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+                  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; CARTO'
                 }).addTo(mapa);
                 var pontos = [];
                 %s
