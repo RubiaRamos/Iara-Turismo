@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -42,23 +43,37 @@
         </Region>
 
         <VBox alignment="CENTER" prefWidth="500.0" HBox.hgrow="ALWAYS">
-            <VBox maxWidth="380.0" prefWidth="380.0" spacing="12.0">
-                <Label styleClass="rotulo" text="Email:" />
-                <TextField fx:id="campoEmail" styleClass="campo" />
+            <VBox maxWidth="420.0" prefWidth="420.0" spacing="6.0">
+                <Label styleClass="rotulo-pequeno" text="Nome completo:" />
+                <TextField fx:id="campoNome" styleClass="campo-pequeno" />
 
-                <Label styleClass="rotulo" text="Senha:">
-                    <VBox.margin>
-                        <Insets top="6.0" />
-                    </VBox.margin>
-                </Label>
-                <PasswordField fx:id="campoSenha" onAction="#onCriar" styleClass="campo" />
+                <HBox spacing="14.0">
+                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                        <Label styleClass="rotulo-pequeno" text="CPF:" />
+                        <TextField fx:id="campoCpf" promptText="000.000.000-00" styleClass="campo-pequeno" />
+                    </VBox>
+                    <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                        <Label styleClass="rotulo-pequeno" text="Telefone:" />
+                        <TextField fx:id="campoTelefone" promptText="(41) 99999-9999" styleClass="campo-pequeno" />
+                    </VBox>
+                </HBox>
 
-                <VBox alignment="CENTER">
+                <Label styleClass="rotulo-pequeno" text="Data de nascimento:" />
+                <DatePicker fx:id="campoNascimento" maxWidth="Infinity" styleClass="campo-data" />
+
+                <Label styleClass="rotulo-pequeno" text="Email:" />
+                <TextField fx:id="campoEmail" styleClass="campo-pequeno" />
+
+                <Label styleClass="rotulo-pequeno" text="Senha (mínimo 6 caracteres):" />
+                <PasswordField fx:id="campoSenha" onAction="#onCriar" styleClass="campo-pequeno" />
+
+                <HBox alignment="CENTER" spacing="18.0">
                     <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="18.0" />
                     </VBox.margin>
+                    <Button onAction="#onVoltar" styleClass="botao-contorno" text="Voltar" />
                     <Button onAction="#onCriar" styleClass="botao-creme" text="Criar" />
-                </VBox>
+                </HBox>
             </VBox>
         </VBox>
     </HBox>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.web.WebView?>
+
+<!-- Mapa dos hotéis: OpenStreetMap + Leaflet dentro de um WebView. -->
+<BorderPane prefHeight="800.0" prefWidth="1280.0" stylesheets="@../css/pesquisa.css" styleClass="root"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="br.com.hoteliara.controller.MapaController">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header">
+            <padding>
+                <Insets bottom="18" left="30" right="30" top="18" />
+            </padding>
+            <Label styleClass="brand" text="Hotel Iara" />
+            <Label styleClass="tagline" text="Onde ficam os nossos hotéis" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblInfo" styleClass="user" />
+            <Button onAction="#onVoltar" styleClass="details" text="❮  Voltar" />
+        </HBox>
+    </top>
+    <center>
+        <WebView fx:id="webView" />
+    </center>
+</BorderPane>

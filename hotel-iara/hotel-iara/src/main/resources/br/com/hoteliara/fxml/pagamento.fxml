@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Pagamento da reserva: resumo à esquerda, forma de pagamento à direita. -->
+<VBox prefHeight="800.0" prefWidth="1280.0" styleClass="fundo-claro"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.com.hoteliara.controller.PagamentoController">
+
+    <!-- Cabeçalho (a logo pequena volta para a pesquisa) -->
+    <StackPane minHeight="150.0" prefHeight="150.0">
+        <ImageView fitHeight="140.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+            <image>
+                <Image url="@../img/titulo-hotel.png" />
+            </image>
+        </ImageView>
+        <ImageView fitWidth="90.0" onMouseClicked="#onVoltar" pickOnBounds="true"
+                   preserveRatio="true" styleClass="imagem-clicavel" StackPane.alignment="TOP_LEFT">
+            <image>
+                <Image url="@../img/logo.png" />
+            </image>
+            <StackPane.margin>
+                <Insets left="31.0" top="25.0" />
+            </StackPane.margin>
+        </ImageView>
+    </StackPane>
+
+    <HBox prefHeight="560.0" styleClass="card-escuro-grande">
+        <VBox.margin>
+            <Insets left="29.0" right="29.0" />
+        </VBox.margin>
+
+        <!-- Resumo da reserva -->
+        <VBox prefWidth="620.0" spacing="12.0" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets left="50.0" right="40.0" top="45.0" />
+            </padding>
+            <Label styleClass="rotulo-grande" text="Resumo da reserva" />
+            <Label fx:id="lblHotel" styleClass="texto-destaque" wrapText="true" />
+            <Label fx:id="lblQuarto" styleClass="texto-info" wrapText="true" />
+            <Label fx:id="lblPeriodo" styleClass="texto-info" />
+            <Label fx:id="lblStatus" styleClass="texto-info" />
+            <Label fx:id="lblTotal" styleClass="texto-info">
+                <VBox.margin>
+                    <Insets top="16.0" />
+                </VBox.margin>
+            </Label>
+            <Label fx:id="lblPago" styleClass="texto-info" />
+            <Label fx:id="lblSaldo" styleClass="texto-total" />
+        </VBox>
+
+        <Region maxWidth="3.0" minWidth="3.0" prefWidth="3.0" styleClass="divisor" />
+
+        <!-- Forma de pagamento -->
+        <VBox prefWidth="560.0" spacing="12.0" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets left="50.0" right="50.0" top="45.0" />
+            </padding>
+            <fx:define>
+                <ToggleGroup fx:id="grupoForma" />
+            </fx:define>
+            <Label styleClass="rotulo-grande" text="Forma de pagamento" />
+            <RadioButton fx:id="opPix" selected="true" styleClass="radio-claro"
+                         text="Pix (aprovação na hora)" toggleGroup="$grupoForma" />
+            <RadioButton fx:id="opCartao" styleClass="radio-claro"
+                         text="Cartão de crédito (até 12x)" toggleGroup="$grupoForma" />
+            <HBox fx:id="caixaParcelas" alignment="CENTER_LEFT" spacing="12.0">
+                <padding>
+                    <Insets left="30.0" />
+                </padding>
+                <Label styleClass="rotulo-pequeno" text="Parcelas:" />
+                <ComboBox fx:id="campoParcelas" prefWidth="110.0" />
+            </HBox>
+            <RadioButton fx:id="opBoleto" styleClass="radio-claro"
+                         text="Boleto (fica pendente até a compensação)" toggleGroup="$grupoForma" />
+
+            <Label styleClass="rotulo-pequeno" text="Valor a pagar agora:">
+                <VBox.margin>
+                    <Insets top="12.0" />
+                </VBox.margin>
+            </Label>
+            <TextField fx:id="campoValor" maxWidth="220.0" styleClass="campo-pequeno" />
+
+            <HBox spacing="16.0">
+                <VBox.margin>
+                    <Insets top="22.0" />
+                </VBox.margin>
+                <Button onAction="#onDepois" styleClass="botao-contorno" text="Depois" />
+                <Button onAction="#onPagar" styleClass="botao-creme" text="Pagar" />
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>
