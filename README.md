@@ -88,7 +88,7 @@ aplicados. Todo o código foi revisado e testado pela equipe.
 | Integrante | Principal contribuição |
 |---|---|
 | Nacimy Santos | Hotel, Endereco, Categoria, Quarto e subclasses, Reserva, interfaces Reservavel/Cancelavel, enums; integração das telas com o sistema; revisão dos Pull Requests |
-| Luiza | Pessoa, Cliente, Funcionario e senha com hash; documentação |
+| Luiza Wesp Fernandes| Pessoa, Cliente, Funcionario e senha com hash; documentação |
 | Ruan Eduardo Yamaguchi (Du) | Pagamento e subclasses, Avaliacao, DAOs e conexão JDBC, MapaService e CepService; banco de dados |
 | Rúbia Ramos | Telas de login, cadastro e detalhe do quarto; modelagem do banco; documentação |
-| Fabrine | Tela de pesquisa (layout e estilo) |
+| Fabrine wrublevski | Tela de pesquisa (layout e estilo) |
