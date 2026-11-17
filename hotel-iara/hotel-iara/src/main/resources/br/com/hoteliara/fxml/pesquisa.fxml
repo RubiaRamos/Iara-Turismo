@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!-- Tela de pesquisa (layout da Fabrine). Os cards de quartos são criados
+     pelo PesquisaController a partir do banco de dados. -->
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.hoteliara.controller.PesquisaController"
+            stylesheets="@../css/pesquisa.css"
+            prefWidth="1280"
+            prefHeight="800"
+            styleClass="root">
+
+    <!-- CABEÇALHO -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header">
+            <padding>
+                <Insets top="18" right="30" bottom="18" left="30"/>
+            </padding>
+
+            <Button text="☰" onAction="#alternarMenu" styleClass="menu-button"/>
+            <Label text="Hotel Iara" styleClass="brand"/>
+            <Label text="Sua rede de hotéis em todo o Brasil" styleClass="tagline"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblUsuario" text="Olá, visitante" styleClass="user"/>
+            <Button text="Sair" onAction="#sair" styleClass="user-sair"/>
+        </HBox>
+    </top>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <center>
+        <StackPane>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll">
+                <content>
+                    <VBox spacing="24" styleClass="page">
+                        <padding>
+                            <Insets top="25" right="30" bottom="30" left="30"/>
+                        </padding>
+
+                        <!-- BANNER PRINCIPAL -->
+                        <VBox spacing="10" styleClass="hero">
+                            <padding>
+                                <Insets top="25" right="30" bottom="25" left="30"/>
+                            </padding>
+                            <Label text="Hospedagens incríveis em todo o Brasil" styleClass="hero-title"/>
+                            <Label text="Conforto, praticidade e a melhor localização para a sua viagem."
+                                   styleClass="hero-subtitle"/>
+                        </VBox>
+
+                        <!-- BARRA DE PESQUISA -->
+                        <HBox alignment="CENTER_LEFT" spacing="15" styleClass="search-bar">
+                            <padding>
+                                <Insets top="15" right="18" bottom="15" left="18"/>
+                            </padding>
+                            <TextField fx:id="campoDestino" onAction="#buscar"
+                                       promptText="Destino: cidade, estado ou nome do hotel (vazio = todos)"
+                                       HBox.hgrow="ALWAYS"/>
+                            <DatePicker fx:id="checkIn" promptText="Check-in"/>
+                            <DatePicker fx:id="checkOut" promptText="Check-out"/>
+                            <Spinner fx:id="hospedes" editable="true" prefWidth="110"/>
+                            <Button text="Buscar" onAction="#buscar" styleClass="details"/>
+                        </HBox>
+
+                        <!-- TÍTULO DAS HOSPEDAGENS -->
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Opções de Hospedagem" styleClass="section-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblContador" text="0 opções" styleClass="counter"/>
+                        </HBox>
+
+                        <!-- RESULTADOS: preenchido pelo controller -->
+                        <FlowPane fx:id="resultados" hgap="20" vgap="20"/>
+                    </VBox>
+                </content>
+            </ScrollPane>
+
+            <!-- MENU LATERAL -->
+            <VBox fx:id="menuLateral" visible="false" managed="false" alignment="TOP_LEFT"
+                  spacing="12" maxWidth="250" styleClass="side-menu" StackPane.alignment="TOP_LEFT">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="Navegação" styleClass="menu-heading"/>
+                <Button text="Início" onAction="#irInicio"/>
+                <Button text="Minhas Reservas" onAction="#irReservas"/>
+                <Button text="Mapa dos Hotéis" onAction="#irMapa"/>
+                <Button text="Sair" onAction="#sair"/>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

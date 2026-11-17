@@ -5,3 +5,6 @@ db.properties
 target/
 .idea/
 *.iml
+
+# Arquivos invisiveis do macOS
+.DS_Store

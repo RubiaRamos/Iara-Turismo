@@ -2,7 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -10,12 +12,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<!-- Detalhe do quarto: foto + descrição à esquerda, calendário + botão à direita. -->
+<!-- Detalhe do quarto: foto + descrição à esquerda; datas, hóspedes, total e botão à direita. -->
 <VBox prefHeight="800.0" prefWidth="1280.0" styleClass="fundo-claro"
       xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="br.com.hoteliara.controller.QuartoController">
 
-    <!-- Cabeçalho (a logo pequena volta para a lista de quartos) -->
+    <!-- Cabeçalho (a logo pequena volta para a pesquisa) -->
     <StackPane minHeight="185.0" prefHeight="185.0">
         <ImageView fitHeight="168.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
             <image>
@@ -48,11 +50,9 @@
             <ImageView fx:id="fotoQuarto" fitWidth="284.0" preserveRatio="true" />
 
             <VBox spacing="12.0" HBox.hgrow="ALWAYS">
-                <!-- Título: imagem cursiva (quarto casal) ou texto, conforme o quarto -->
-                <VBox alignment="CENTER">
-                    <ImageView fx:id="tituloImagem" fitHeight="78.0" preserveRatio="true" />
-                    <Label fx:id="lblNome" styleClass="titulo-quarto" />
-                </VBox>
+                <Label fx:id="lblNome" styleClass="titulo-quarto" wrapText="true" />
+                <Label fx:id="lblHotel" maxWidth="Infinity" styleClass="texto-destaque" wrapText="true" />
+                <Label fx:id="lblEndereco" maxWidth="Infinity" styleClass="texto-descricao" wrapText="true" />
                 <Label fx:id="lblDescricao" maxWidth="Infinity" styleClass="texto-descricao"
                        textAlignment="JUSTIFY" wrapText="true" />
                 <Label fx:id="lblDestaque" maxWidth="Infinity" styleClass="texto-destaque" wrapText="true">
@@ -68,12 +68,30 @@
         <!-- Linha divisória -->
         <Region maxWidth="3.0" minWidth="3.0" prefWidth="3.0" styleClass="divisor" />
 
-        <!-- Lado direito: calendário e botão -->
-        <VBox alignment="CENTER" prefWidth="410.0" spacing="22.0" HBox.hgrow="ALWAYS">
-            <!-- O calendário é colocado aqui pelo controller (DatePickerSkin) -->
-            <StackPane fx:id="calendarioBox" maxWidth="310.0" styleClass="calendario" />
-            <Label fx:id="lblData" styleClass="rotulo" text="Selecione a data" />
-            <Button onAction="#onReservar" styleClass="botao-creme" text="Reservar" />
+        <!-- Lado direito: período, hóspedes, total e botão -->
+        <VBox alignment="CENTER_LEFT" maxWidth="410.0" prefWidth="410.0" spacing="8.0">
+            <padding>
+                <Insets left="40.0" right="40.0" />
+            </padding>
+            <Label styleClass="rotulo-pequeno" text="Check-in:" />
+            <DatePicker fx:id="campoCheckIn" maxWidth="Infinity" styleClass="campo-data" />
+            <Label styleClass="rotulo-pequeno" text="Check-out:" />
+            <DatePicker fx:id="campoCheckOut" maxWidth="Infinity" styleClass="campo-data" />
+            <Label styleClass="rotulo-pequeno" text="Hóspedes:" />
+            <Spinner fx:id="campoHospedes" maxWidth="Infinity" />
+            <Label fx:id="lblNoites" styleClass="texto-info">
+                <VBox.margin>
+                    <Insets top="14.0" />
+                </VBox.margin>
+            </Label>
+            <Label fx:id="lblTotal" styleClass="texto-total" />
+            <HBox alignment="CENTER" spacing="16.0">
+                <VBox.margin>
+                    <Insets top="16.0" />
+                </VBox.margin>
+                <Button onAction="#onVerQuartos" styleClass="botao-contorno" text="Voltar" />
+                <Button onAction="#onReservar" styleClass="botao-creme" text="Reservar" />
+            </HBox>
         </VBox>
     </HBox>
 </VBox>

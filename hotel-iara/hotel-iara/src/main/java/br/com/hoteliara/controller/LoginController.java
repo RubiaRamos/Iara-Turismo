@@ -1,8 +1,11 @@
 package br.com.hoteliara.controller;
 
 import br.com.hoteliara.Navegador;
-import br.com.hoteliara.modelo.RepositorioUsuarios;
-import br.com.hoteliara.modelo.Sessao;
+import br.com.hoteliara.Sessao;
+import br.com.hoteliara.exception.BancoDadosException;
+import br.com.hoteliara.exception.LoginInvalidoException;
+import br.com.hoteliara.model.Pessoa;
+import br.com.hoteliara.service.AuthService;
 import br.com.hoteliara.util.Dialogos;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -18,6 +21,8 @@ public class LoginController {
     @FXML
     private PasswordField campoSenha;
 
+    private final AuthService authService = new AuthService();
+
     @FXML
     private void onEntrar() {
         String email = campoEmail.getText().trim();
@@ -27,14 +32,16 @@ public class LoginController {
             Dialogos.aviso("Preencha o e-mail e a senha.");
             return;
         }
-        if (!RepositorioUsuarios.getInstancia().autenticar(email, senha)) {
-            Dialogos.aviso("E-mail ou senha incorretos.");
+        try {
+            Pessoa pessoa = authService.entrar(email, senha);
+            Sessao.entrar(pessoa);
+            Navegador.irPara("pesquisa");
+        } catch (LoginInvalidoException e) {
+            Dialogos.aviso(e.getMessage());
             campoSenha.clear();
-            return;
+        } catch (BancoDadosException e) {
+            Dialogos.erro("Sem conexão com o banco", e.getMessage());
         }
-
-        Sessao.setEmailLogado(email);
-        Navegador.irPara("quartos");
     }
 
     @FXML
