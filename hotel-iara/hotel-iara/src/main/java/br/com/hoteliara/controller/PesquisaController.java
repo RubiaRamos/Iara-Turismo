@@ -159,7 +159,7 @@ public class PesquisaController {
 
     @FXML
     private void irReservas() {
-        Navegador.irPara("reservas");
+        Navegador.irPara(Sessao.getCliente() != null ? "reservas" : "admin");
     }
 
     @FXML

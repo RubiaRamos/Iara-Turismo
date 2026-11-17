@@ -12,6 +12,7 @@ import br.com.hoteliara.model.Avaliacao;
 import br.com.hoteliara.model.Cancelavel;
 import br.com.hoteliara.model.Cliente;
 import br.com.hoteliara.model.Pagamento;
+import br.com.hoteliara.model.PagamentoBoleto;
 import br.com.hoteliara.model.Quarto;
 import br.com.hoteliara.model.Reserva;
 import br.com.hoteliara.model.StatusPagamento;
@@ -73,5 +74,46 @@ public class ReservaService {
         Avaliacao avaliacao = cliente.avaliarHotel(reserva, nota, comentario);
         avaliacaoDAO.salvar(avaliacao);
         return avaliacao;
+    }
+
+    // ---------- ações do funcionário ----------
+
+    /** O funcionário confirma a reserva (ex.: pagamento feito no balcão). */
+    public void confirmar(Reserva reserva) {
+        reserva.confirmar();          // a Reserva confere se está PENDENTE
+        reservaDAO.atualizar(reserva);
+    }
+
+    /** Check-out feito: a reserva termina e o quarto é liberado. */
+    public void concluir(Reserva reserva) {
+        reserva.concluir();           // a Reserva confere se está CONFIRMADA
+        reservaDAO.atualizar(reserva);
+    }
+
+    /**
+     * O boleto foi pago no banco: registra a baixa do primeiro boleto pendente
+     * e confirma a reserva se ela ficou quitada.
+     */
+    public PagamentoBoleto registrarBaixaBoleto(Reserva reserva) throws PagamentoRecusadoException {
+        PagamentoBoleto boleto = boletoPendente(reserva);
+        if (boleto == null)
+            throw new IllegalStateException("Esta reserva não tem boleto pendente.");
+        boleto.registrarBaixa();
+        pagamentoDAO.atualizar(boleto);
+        if (reserva.getStatus() == StatusReserva.PENDENTE && reserva.estaQuitada()) {
+            reserva.confirmar();
+            reservaDAO.atualizar(reserva);
+        }
+        return boleto;
+    }
+
+    public PagamentoBoleto boletoPendente(Reserva reserva) {
+        for (Pagamento pagamento : reserva.getPagamentos()) {
+            if (pagamento instanceof PagamentoBoleto boleto
+                    && boleto.getStatus() == StatusPagamento.PENDENTE) {
+                return boleto;
+            }
+        }
+        return null;
     }
 }

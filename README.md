@@ -17,6 +17,7 @@ O sistema organiza tudo isso aplicando os conceitos de POO, com dados guardados 
 - Pagamento por **Pix** (aprova na hora), **cartão** (1 a 12 parcelas) ou **boleto** (fica pendente).
   Dá para pagar em partes; a reserva é confirmada quando fica quitada.
 - "Minhas reservas": histórico, pagar o restante, cancelar (estorna os pagamentos aprovados) e avaliar (nota 1 a 5).
+- Área do funcionário: reservas ativas de todos os hotéis, com confirmar, concluir (check-out), cancelar e dar baixa no boleto.
 - Mapa dos hotéis (OpenStreetMap + Leaflet). Hotel sem coordenadas é localizado pela API Nominatim.
 - Mensagens claras para cada erro (exceções próprias do sistema).
 
@@ -42,7 +43,7 @@ Requisitos: **JDK 17+**, **Maven** e **MySQL 8**. Na primeira vez, o Maven preci
    `br.com.hoteliara.Launcher`, com *Working directory* nessa mesma pasta.
 
 **Logins de teste** (senha `123456`): cliente `ana.silva@email.com` · funcionária `renata.faria@agencia.com`
-(funcionário consegue pesquisar, mas só cliente reserva).
+(o funcionário entra direto na Área do funcionário; só cliente faz reserva).
 
 ## Organização do código (`hotel-iara/hotel-iara/src/main/java/br/com/hoteliara`)
 
@@ -56,6 +57,7 @@ Requisitos: **JDK 17+**, **Maven** e **MySQL 8**. Na primeira vez, o Maven preci
 | `util` | SenhaUtil, MapaService, CepService, Dialogos, Imagens | Apoio e integração com APIs |
 
 Fluxo das telas: login → pesquisa → detalhe do quarto → pagamento → minhas reservas (mapa pelo menu ☰).
+Funcionário: login → área do funcionário (confirmar, concluir, cancelar, baixa do boleto).
 
 ## Decisões de modelagem (conceitos de POO)
 

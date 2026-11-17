@@ -4,6 +4,7 @@ import br.com.hoteliara.Navegador;
 import br.com.hoteliara.Sessao;
 import br.com.hoteliara.exception.BancoDadosException;
 import br.com.hoteliara.exception.LoginInvalidoException;
+import br.com.hoteliara.model.Funcionario;
 import br.com.hoteliara.model.Pessoa;
 import br.com.hoteliara.service.AuthService;
 import br.com.hoteliara.util.Dialogos;
@@ -35,7 +36,8 @@ public class LoginController {
         try {
             Pessoa pessoa = authService.entrar(email, senha);
             Sessao.entrar(pessoa);
-            Navegador.irPara("pesquisa");
+            // Cada tipo de usuário vai para a sua área.
+            Navegador.irPara(pessoa instanceof Funcionario ? "admin" : "pesquisa");
         } catch (LoginInvalidoException e) {
             Dialogos.aviso(e.getMessage());
             campoSenha.clear();

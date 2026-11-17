@@ -71,8 +71,7 @@ public class PagamentoController {
     @FXML
     private void onPagar() {
         try {
-            double valor = Double.parseDouble(campoValor.getText().trim()
-                    .replace("R$", "").replace(".", "").replace(',', '.').trim());
+            double valor = lerValor(campoValor.getText());
             Pagamento pagamento = criarPagamento(valor);
             reservaService.pagar(reserva, pagamento);
 
@@ -96,6 +95,19 @@ public class PagamentoController {
         } catch (BancoDadosException e) {
             Dialogos.erro("Sem conexão com o banco", e.getMessage());
         }
+    }
+
+    /**
+     * Aceita "1.200,50", "1200,50" e também "1200.50" (com ponto).
+     * Se tiver vírgula, ela é a casa decimal e os pontos são de milhar;
+     * se não tiver, o ponto é a casa decimal.
+     */
+    static double lerValor(String texto) {
+        String limpo = texto.replace("R$", "").replace(" ", "").trim();
+        if (limpo.contains(",")) {
+            limpo = limpo.replace(".", "").replace(',', '.');
+        }
+        return Double.parseDouble(limpo);
     }
 
     /**
