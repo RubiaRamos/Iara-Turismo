@@ -52,6 +52,7 @@ Requisitos: **JDK 17+**, **Maven** e **MySQL 8**. Na primeira vez, o Maven preci
 | `service` | AuthService, HotelService, ReservaService, PagamentoService | Coordena o modelo e o banco para cada caso de uso |
 | `dao` | Dao&lt;T&gt;, ConexaoBD e um DAO por entidade | Acesso ao MySQL via JDBC |
 | `controller` + `resources/fxml` | Uma tela por arquivo FXML e seu controller | Interface gráfica (só conversa com os services) |
+| `exception` | Exceções próprias | Situações de erro do sistema |
 | `util` | SenhaUtil, MapaService, CepService, Dialogos, Imagens | Apoio e integração com APIs |
 
 Fluxo das telas: login → pesquisa → detalhe do quarto → pagamento → minhas reservas (mapa pelo menu ☰).
@@ -67,6 +68,7 @@ Fluxo das telas: login → pesquisa → detalhe do quarto → pagamento → minh
 | **Polimorfismo** | `Reserva.calcularTotal()` chama `quarto.calcularDiaria()`; `ReservaService.pagar()` chama `processar()` | Quem usa não precisa saber o tipo real. Um tipo novo de quarto não exige mudar a Reserva. |
 | **Interfaces** | `Cancelavel` (Reserva, Pagamento), `Reservavel` (Quarto), `Dao<T>` (DAOs) | Contratos para classes sem parentesco: o cancelamento de uma reserva estorna os pagamentos tratando os dois como `Cancelavel`. |
 | **Coleções** | `List<Quarto>` no Hotel, `List<Reserva>` no Cliente, `List<Pagamento>` na Reserva, `Map<Integer, Hotel>` no HotelService | Relações um-para-muitos; filtros e ordenação com streams e `Comparator`. |
+| **Exceções** | `QuartoIndisponivelException`, `ReservaInvalidaException`, `PagamentoRecusadoException`, `LoginInvalidoException`, `BancoDadosException`... | Situações esperadas viram mensagens para o usuário em vez de travar o programa. |
 | **Associação** | Reserva liga Cliente e Quarto; Quarto pertence a Hotel e Categoria | Os objetos colaboram: a reserva pede ao quarto o preço e se ele está livre. |
 
 
