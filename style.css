@@ -1,0 +1,221 @@
+
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+.root {
+    -fx-background-color: #1c122d;
+    -fx-font-family: "Arial";
+}
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.header {
+    -fx-background-color: #fffaf1;
+    -fx-min-height: 80px;
+}
+
+.brand {
+    -fx-text-fill: #004a50;
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+.tagline {
+    -fx-text-fill: #20162e;
+    -fx-font-size: 17px;
+}
+
+.user {
+    -fx-text-fill: #20162e;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #20162e;
+    -fx-font-size: 30px;
+    -fx-cursor: hand;
+}
+
+/* =========================================
+   ÁREA PRINCIPAL E ROLAGEM
+========================================= */
+
+.scroll {
+    -fx-background-color: #1c122d;
+    -fx-background: #1c122d;
+}
+
+.scroll > .viewport {
+    -fx-background-color: #1c122d;
+}
+
+.page {
+    -fx-padding: 20px;
+    -fx-background-color: #1c122d;
+}
+
+/* =========================================
+   BANNER PRINCIPAL
+========================================= */
+
+.hero {
+    -fx-background-color: linear-gradient(
+            to right,
+            #004c52,
+            #057a81
+    );
+    -fx-background-radius: 18px;
+    -fx-min-height: 150px;
+}
+
+.hero-title {
+    -fx-text-fill: white;
+    -fx-font-size: 31px;
+    -fx-font-weight: bold;
+}
+
+.hero-subtitle {
+    -fx-text-fill: white;
+    -fx-font-size: 19px;
+}
+
+/* =========================================
+   BARRA DE PESQUISA
+========================================= */
+
+.search-bar {
+    -fx-background-color: #fffaf1;
+    -fx-background-radius: 18px;
+}
+
+.search-bar .text-field,
+.search-bar .date-picker,
+.search-bar .spinner {
+    -fx-font-size: 15px;
+    -fx-pref-height: 42px;
+}
+
+/* =========================================
+   TÍTULO DAS HOSPEDAGENS
+========================================= */
+
+.section-title {
+    -fx-text-fill: white;
+    -fx-font-size: 29px;
+    -fx-font-weight: bold;
+}
+
+.counter {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+/* =========================================
+   CARTÕES DOS QUARTOS
+========================================= */
+
+.room-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18px;
+    -fx-min-width: 0px;
+    -fx-pref-width: 390px;
+}
+
+.room-card .image-view {
+    -fx-background-radius: 12px;
+}
+
+/* =========================================
+   INFORMAÇÕES DOS QUARTOS
+========================================= */
+
+.location {
+    -fx-text-fill: #00616b;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.room-title {
+    -fx-text-fill: #20162e;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.description {
+    -fx-text-fill: #20162e;
+    -fx-font-size: 17px;
+}
+
+.amenities {
+    -fx-text-fill: #123c43;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+/* =========================================
+   PREÇOS
+========================================= */
+
+.small {
+    -fx-text-fill: #30283c;
+    -fx-font-size: 14px;
+}
+
+.price {
+    -fx-text-fill: #20162e;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.details {
+    -fx-background-color: #2a123e;
+    -fx-background-radius: 14px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 17px;
+    -fx-cursor: hand;
+}
+
+.details:hover {
+    -fx-background-color: #4d2b68;
+}
+
+/* =========================================
+   MENU LATERAL
+========================================= */
+
+.side-menu {
+    -fx-background-color: #21152f;
+    -fx-background-radius: 12px;
+    -fx-min-height: 480px;
+}
+
+.side-menu .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 17px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-width: 205px;
+    -fx-cursor: hand;
+}
+
+.side-menu .button:hover {
+    -fx-background-color: #4d385c;
+}
+
+.menu-heading {
+    -fx-text-fill: #f5e8d4;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+}

@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.iara.HelloController"
+            stylesheets="@style.css"
+            prefWidth="1440"
+            prefHeight="900"
+            styleClass="root">
+
+    <!-- CABEÇALHO -->
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="20"
+              styleClass="header">
+
+            <padding>
+                <Insets top="18" right="30" bottom="18" left="30"/>
+            </padding>
+
+            <Button text="☰"
+                    onAction="#alternarMenu"
+                    styleClass="menu-button"/>
+
+            <Label text="Hotel Iara" styleClass="brand"/>
+
+            <Label text="Sua rede de hotéis em todo o Brasil"
+                   styleClass="tagline"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="Olá, visitante" styleClass="user"/>
+
+        </HBox>
+    </top>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <center>
+        <StackPane>
+
+            <ScrollPane fitToWidth="true"
+                        hbarPolicy="NEVER"
+                        styleClass="scroll">
+
+                <content>
+                    <VBox spacing="24" styleClass="page">
+
+                        <padding>
+                            <Insets top="25" right="30" bottom="30" left="30"/>
+                        </padding>
+
+                        <!-- BANNER PRINCIPAL -->
+                        <VBox spacing="10" styleClass="hero">
+
+                            <padding>
+                                <Insets top="25" right="30" bottom="25" left="30"/>
+                            </padding>
+
+                            <Label text="Hospedagens incríveis em todo o Brasil"
+                                   styleClass="hero-title"/>
+
+                            <Label text="Conforto, praticidade e a melhor localização para a sua viagem."
+                                   styleClass="hero-subtitle"/>
+
+                        </VBox>
+
+                        <!-- BARRA DE PESQUISA -->
+                        <HBox alignment="CENTER_LEFT"
+                              spacing="15"
+                              styleClass="search-bar">
+
+                            <padding>
+                                <Insets top="15" right="18" bottom="15" left="18"/>
+                            </padding>
+
+                            <TextField fx:id="campoDestino"
+                                       promptText="Destino: Curitiba, RJ, Salvador..."
+                                       HBox.hgrow="ALWAYS"/>
+
+                            <DatePicker fx:id="checkIn"
+                                        promptText="Check-in"/>
+
+                            <DatePicker fx:id="checkOut"
+                                        promptText="Check-out"/>
+
+                            <Spinner fx:id="hospedes"
+                                     editable="true"
+                                     prefWidth="110"/>
+
+                            <Button text="Buscar"
+                                    onAction="#buscar"
+                                    styleClass="details"/>
+
+                        </HBox>
+
+                        <!-- TÍTULO DAS HOSPEDAGENS -->
+                        <HBox alignment="CENTER_LEFT">
+
+                            <Label text="Opções de Hospedagem"
+                                   styleClass="section-title"/>
+
+                            <Region HBox.hgrow="ALWAYS"/>
+
+                            <Label text="12 opções"
+                                   styleClass="counter"/>
+
+                        </HBox>
+
+                        <!-- PRIMEIRA LINHA DE HOSPEDAGENS -->
+                        <HBox spacing="20" fillHeight="true">
+
+                            <!-- QUARTO 1 -->
+                            <VBox styleClass="room-card"
+                                  HBox.hgrow="ALWAYS"
+                                  maxWidth="Infinity"
+                                  spacing="10">
+
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390"
+                                           fitHeight="185"
+                                           preserveRatio="false"
+                                           smooth="true">
+                                    <image>
+                                        <Image url="@images/quarto1.png"/>
+]                                   </image>
+                                </ImageView>
+
+                                <Label text="Curitiba – PR" styleClass="location"/>
+                                <Label text="Quarto Standard" styleClass="room-title"/>
+
+                                <Label text="Quarto confortável com ar-condicionado, TV de tela plana, frigobar e banheiro privativo."
+                                       wrapText="true"
+                                       styleClass="description"
+                                       minHeight="52"/>
+
+                                <Label text="Ar-condicionado  •  TV  •  Frigobar"
+                                       wrapText="true"
+                                       styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 299,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+
+                                    <Region HBox.hgrow="ALWAYS"/>
+
+                                    <Button text="Ver Detalhes  ❯"
+                                            styleClass="details"
+                                            onAction="#verDetalhes">
+                                        <userData>
+                                            <String fx:value="Quarto Standard | Curitiba – PR"/>
+                                        </userData>
+                                    </Button>
+
+                                </HBox>
+                            </VBox>
+
+                            <!-- QUARTO 2 -->
+                            <VBox styleClass="room-card"
+                                  HBox.hgrow="ALWAYS"
+                                  maxWidth="Infinity"
+                                  spacing="10">
+
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390"
+                                           fitHeight="185"
+                                           preserveRatio="false"
+                                           smooth="true">
+                                    <image>
+                                        <Image url="@images/quarto2.png"/>
+                                    </image>
+                                </ImageView>
+
+                                <Label text="Rio de Janeiro – RJ" styleClass="location"/>
+                                <Label text="Quarto Superior" styleClass="room-title"/>
+
+                                <Label text="Mais espaço e conforto, com varanda e vista privilegiada."
+                                       wrapText="true"
+                                       styleClass="description"
+                                       minHeight="52"/>
+
+                                <Label text="Ar-condicionado  •  TV  •  Café da manhã"
+                                       wrapText="true"
+                                       styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 449,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+
+                                    <Region HBox.hgrow="ALWAYS"/>
+
+                                    <Button text="Ver Detalhes  ❯"
+                                            styleClass="details"
+                                            onAction="#verDetalhes">
+                                        <userData>
+                                            <String fx:value="Quarto Superior | Rio de Janeiro – RJ"/>
+                                        </userData>
+                                    </Button>
+
+                                </HBox>
+                            </VBox>
+
+                            <!-- QUARTO 3 -->
+                            <VBox styleClass="room-card"
+                                  HBox.hgrow="ALWAYS"
+                                  maxWidth="Infinity"
+                                  spacing="10">
+
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390"
+                                           fitHeight="185"
+                                           preserveRatio="false"
+                                           smooth="true">
+                                    <image>
+                                        <Image url="@images/quarto3.png"/>
+                                    </image>
+                                </ImageView>
+
+                                <Label text="Gramado – RS" styleClass="location"/>
+                                <Label text="Suíte Premium" styleClass="room-title"/>
+
+                                <Label text="Suíte completa com banheira de hidromassagem, varanda e vista para a serra."
+                                       wrapText="true"
+                                       styleClass="description"
+                                       minHeight="52"/>
+
+                                <Label text="Ar-condicionado  •  Hidromassagem  •  TV"
+                                       wrapText="true"
+                                       styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 799,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+
+                                    <Region HBox.hgrow="ALWAYS"/>
+
+                                    <Button text="Ver Detalhes  ❯"
+                                            styleClass="details"
+                                            onAction="#verDetalhes">
+                                        <userData>
+                                            <String fx:value="Suíte Premium | Gramado – RS"/>
+                                        </userData>
+                                    </Button>
+
+                                </HBox>
+                            </VBox>
+
+                        </HBox>
+
+                        <!-- SEGUNDA LINHA DE HOSPEDAGENS -->
+                        <HBox spacing="20" fillHeight="true">
+
+                            <!-- QUARTO 4 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto1.png"/></image>
+                                </ImageView>
+
+                                <Label text="Salvador – BA" styleClass="location"/>
+                                <Label text="Quarto Vista Mar" styleClass="room-title"/>
+                                <Label text="Acomodação aconchegante com vista para o litoral e cama queen."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Wi-Fi  •  Ar-condicionado  •  TV" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 389,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Quarto Vista Mar | Salvador – BA"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                            <!-- QUARTO 5 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto2.png"/></image>
+                                </ImageView>
+
+                                <Label text="Florianópolis – SC" styleClass="location"/>
+                                <Label text="Suíte Praia" styleClass="room-title"/>
+                                <Label text="Ambiente iluminado com varanda, ideal para descansar perto do mar."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Varanda  •  Frigobar  •  Wi-Fi" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 529,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Suíte Praia | Florianópolis – SC"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                            <!-- QUARTO 6 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto2.png"/></image>
+                                </ImageView>
+
+                                <Label text="São Paulo – SP" styleClass="location"/>
+                                <Label text="Quarto Executivo" styleClass="room-title"/>
+                                <Label text="Conforto e praticidade para viagens a trabalho ou lazer."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Mesa de trabalho  •  TV  •  Wi-Fi" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 359,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Quarto Executivo | São Paulo – SP"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                        </HBox>
+
+                        <!-- TERCEIRA LINHA DE HOSPEDAGENS -->
+                        <HBox spacing="20" fillHeight="true">
+
+                            <!-- QUARTO 7 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto3.png"/></image>
+                                </ImageView>
+
+                                <Label text="Belo Horizonte – MG" styleClass="location"/>
+                                <Label text="Quarto Deluxe" styleClass="room-title"/>
+                                <Label text="Quarto amplo com decoração moderna e banheiro privativo."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Ar-condicionado  •  TV  •  Frigobar" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 419,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Quarto Deluxe | Belo Horizonte – MG"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                            <!-- QUARTO 8 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto2.png"/></image>
+                                </ImageView>
+
+                                <Label text="Fortaleza – CE" styleClass="location"/>
+                                <Label text="Suíte Tropical" styleClass="room-title"/>
+                                <Label text="Acomodação confortável para aproveitar dias ensolarados."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Café da manhã  •  Wi-Fi  •  TV" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 549,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Suíte Tropical | Fortaleza – CE"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                            <!-- QUARTO 9 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto3.png"/></image>
+                                </ImageView>
+
+                                <Label text="Brasília – DF" styleClass="location"/>
+                                <Label text="Quarto Conforto" styleClass="room-title"/>
+                                <Label text="Espaço funcional e acolhedor para uma ótima estadia."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Ar-condicionado  •  TV  •  Wi-Fi" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 329,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Quarto Conforto | Brasília – DF"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                        </HBox>
+
+                        <!-- QUARTA LINHA DE HOSPEDAGENS -->
+                        <HBox spacing="20" fillHeight="true">
+
+                            <!-- QUARTO 10 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto1.png"/></image>
+                                </ImageView>
+
+                                <Label text="Recife – PE" styleClass="location"/>
+                                <Label text="Quarto Família" styleClass="room-title"/>
+                                <Label text="Espaço amplo para viagens em família com comodidades essenciais."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Frigobar  •  TV  •  Wi-Fi" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 469,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Quarto Família | Recife – PE"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                            <!-- QUARTO 11 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto2.png"/></image>
+                                </ImageView>
+
+                                <Label text="Foz do Iguaçu – PR" styleClass="location"/>
+                                <Label text="Suíte Natureza" styleClass="room-title"/>
+                                <Label text="Suíte tranquila com decoração elegante e área de descanso."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Ar-condicionado  •  TV  •  Café da manhã" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 589,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Suíte Natureza | Foz do Iguaçu – PR"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                            <!-- QUARTO 12 -->
+                            <VBox styleClass="room-card" HBox.hgrow="ALWAYS" maxWidth="Infinity" spacing="10">
+                                <padding>
+                                    <Insets top="15" right="15" bottom="15" left="15"/>
+                                </padding>
+
+                                <ImageView fitWidth="390" fitHeight="185" preserveRatio="false" smooth="true">
+                                    <image><Image url="@images/quarto3.png"/></image>
+                                </ImageView>
+
+                                <Label text="Manaus – AM" styleClass="location"/>
+                                <Label text="Quarto Premium" styleClass="room-title"/>
+                                <Label text="Conforto e praticidade em um ambiente acolhedor."
+                                       wrapText="true" styleClass="description" minHeight="52"/>
+                                <Label text="Wi-Fi  •  TV  •  Frigobar" wrapText="true" styleClass="amenities"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="3">
+                                        <Label text="A partir de" styleClass="small"/>
+                                        <Label text="R$ 499,00" styleClass="price"/>
+                                        <Label text="por diária" styleClass="small"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button text="Ver Detalhes  ❯" styleClass="details" onAction="#verDetalhes">
+                                        <userData><String fx:value="Quarto Premium | Manaus – AM"/></userData>
+                                    </Button>
+                                </HBox>
+                            </VBox>
+
+                        </HBox>
+
+                    </VBox>
+                </content>
+            </ScrollPane>
+
+            <!-- MENU LATERAL -->
+            <VBox fx:id="menuLateral"
+                  visible="false"
+                  managed="false"
+                  alignment="TOP_LEFT"
+                  spacing="12"
+                  maxWidth="250"
+                  styleClass="side-menu"
+                  StackPane.alignment="TOP_LEFT">
+
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <Label text="Navegação" styleClass="menu-heading"/>
+
+                <Button text="Início" onAction="#irInicio"/>
+                <Button text="Hospedagens" onAction="#irInicio"/>
+                <Button text="Destinos"/>
+                <Button text="Minhas Reservas"/>
+                <Button text="Meu Perfil"/>
+                <Button text="Sair"/>
+
+            </VBox>
+
+        </StackPane>
+    </center>
+
+</BorderPane>
